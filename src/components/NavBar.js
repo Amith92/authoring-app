@@ -66,13 +66,13 @@ export class NavBar extends Component {
                                    <Button icon="user-add" >
                                         Invite Team Member
                                    </Button>
-                                   <a href="#!" style={{ marginLeft: '30px', color: 'teal' }}>
+                                   <a href="#!" style={{ marginLeft: '32px', color: 'teal' }}>
                                         <Badge count={17}>
                                              <Icon type="bell" style={{ fontSize: '23px' }}/>
                                         </Badge>
                                    </a>
                                    <Dropdown overlay={menu} trigger={['click']}>
-                                        <Button shape="circle" style={{ marginLeft: '30px', color: 'teal' }}>
+                                        <Button shape="circle" style={{ marginLeft: '35px', color: 'teal' }}>
                                              RA   
                                         </Button>
                                    </Dropdown>
