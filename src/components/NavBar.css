@@ -1,0 +1,10 @@
+@media only screen and (max-width: 992px) {
+    .ap_col:last-child{
+        margin-top: 20px;
+    }
+}
+@media only screen and (min-width: 769px) {
+    .ap_search_form {
+        width: 810;
+    }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Row, Col, Icon, Form, Input, Menu, Button, Dropdown, Switch, Badge } from 'antd';
+import "./NavBar.css";
 
 export class NavBar extends Component {
      state = {
@@ -58,19 +59,18 @@ export class NavBar extends Component {
           return (
                <div style={{ marginTop: '17px', marginLeft: '' }}>
                     <Row style={{ marginLeft: '50px' }}>
-                         <Col span={2}>
+                         <Col xs={{ span: 3  }} lg={{ span: 2, offset: 0 }}>
                               <Icon type="menu"  style={{ fontSize: '26px' }}/>
                          </Col>
-                         <Col span={14}>
+                         <Col xs={{ span: 20  }} lg={{ span: 14, offset: 0 }} className="ap_search_form">
                               <Form>
                                    <Search
                                         placeholder="Search..."
                                         onSearch={value => console.log(value)}
-                                        style={{ width: 810 }}
                                    />   
                               </Form>
                          </Col>
-                         <Col span={6} style={{ marginLeft: '80px' }}>
+                         <Col xs={{ span: 24, offset: 0 }} lg={{ span: 6, offset: 0 }} className="ap_col">
                               <span>
                                    <Button icon="user-add" >
                                         Invite Team Member
