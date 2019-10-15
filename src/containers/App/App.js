@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-// import Body from '../../components/Body'; //Change name to Editor
+import Body from '../../components/Body'; 
 import NavBar from '../../components/NavBar'
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       {/* <Body /> */}
       <NavBar />
+      <Body />
     </div>
   );
 }

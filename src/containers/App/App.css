@@ -1,1 +1,9 @@
 @import '~antd/dist/antd.css';
+
+.rdw-option-wrapper {
+     background-color: black !important;
+     padding: 10px !important;
+     border: 1px solid black !important;     
+     color: white !important;
+     font-weight: bold !important;
+}

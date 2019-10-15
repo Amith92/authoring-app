@@ -4,9 +4,17 @@
   "private": true,
   "dependencies": {
     "antd": "^3.23.6",
+    "draft-js": "^0.11.1",
+    "draftjs-to-html": "^0.8.4",
+    "draftjs-to-markdown": "^0.5.1",
+    "html-to-draftjs": "^1.4.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0"
+    "react-draft-wysiwyg": "^1.13.2",
+    "react-redux": "^7.1.1",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "uuid": "^3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",

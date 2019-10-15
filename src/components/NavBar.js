@@ -1,15 +1,24 @@
 import React, { Component } from 'react'
 import { Row, Col, Icon, Form, Input, Menu, Button, Dropdown, Switch, Badge } from 'antd';
-import SideNav from './SideNav';
 
 export class NavBar extends Component {
+     state = {
+          theme: 'light',
+          current: '1'
+     }
+
+     changeTheme = value => {
+          this.setState({
+            theme: value ? 'dark' : 'light',
+          });
+     };
      render() {
           const { Search } = Input;
           // User settings dropdown
           const menu = (
-               <Menu>
+               <Menu theme={this.state.theme}>
                     <Menu.Item>
-                         Dark mode <Switch size="small" />
+                         Dark mode <Switch size="small" checked={this.state.theme === 'dark'} onChange={this.changeTheme} />
                     </Menu.Item>
                     <Menu.Item>
                          <a target="" rel="noopener noreferrer" href="#!">
@@ -79,9 +88,6 @@ export class NavBar extends Component {
                               </span>
                          </Col>
                     </Row>
-                    
-                    {/* Side navbar component */}
-                    <SideNav />
                </div>
           )
      }
