@@ -1,40 +1,37 @@
 import React, { Component } from 'react'
-import { Layout, Breadcrumb } from 'antd';
+import { Layout, Breadcrumb, Divider } from 'antd';
 import { Editor as WYSIWYGEditor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import bold from './icons/bold.png'
 import italic from './icons/italic.png'
 import link from './icons/link.png'
-import { convertFromRaw, convertToRaw } from 'draft-js';
+import { connect } from 'react-redux'
+import { editItem } from '../containers/App/actions'
 
 export class Editor extends Component {
      constructor(props) {
           super(props)
-          const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
-          const contentState = convertFromRaw(content);
-
-          // console.log(convertRaw(contentState))
           this.state = {
-               contentState
+               content: ''
           }
      }
      
      onContentStateChange = (contentState) => {
           this.setState({
-               contentState,
-          });
+               content: contentState,
+          }, );
      };
      render() {
           const { index, item } = this.props
-          console.log(item)
+          
           let indexKeyArr = [];
           let indexValueArr = [];
           if(index) {
                indexKeyArr = Object.keys(index)
                indexValueArr = Object.values(index)
           }
+          
           const { Header, Content } = Layout;
-          const { contentState } = this.state;
           return (
                <div>
                     <Layout style={{backgroundColor: 'white', marginLeft: '35px' }}>
@@ -47,56 +44,52 @@ export class Editor extends Component {
                                    <Breadcrumb.Item>
                                    {indexValueArr.length > 0 ? <span>{indexValueArr[1]}</span>: '' }
                                    </Breadcrumb.Item>
-                                   <Breadcrumb.Item>
+                                   {/* <Breadcrumb.Item>
                                    {indexValueArr.length > 0 ? <span>{indexValueArr[2]}</span>: '' }
-                                   </Breadcrumb.Item>
+                                   </Breadcrumb.Item> */}
                                    
                               </Breadcrumb>
-                                   <h1 style={{ fontSize: '35px' }}>WYSIWYG Editor </h1>
-                                   
+
                                    {indexKeyArr.length > 0 ?
                                         <div style={{ marginLeft: '35px', marginRight: '35px', marginBottom: '35px' }}>
                                              {/* For Title */}
+                                             {item ? 
+                                             <span>
+                                             <h1 style={{ fontSize: '35px' }}>{item[0].name} </h1>
+
                                              <WYSIWYGEditor
                                                   toolbarOnFocus
-                                                  // editorState={convertToRaw(contentState)}
                                                   wrapperClassName="demo-wrapper"
                                                   editorClassName="demo-editor"
-                                                  toolbarStyle={{ backgroundColor: 'black', borderRadius: '4px', padding: '17px' }}
-                                                  onContentStateChange={this.onContentStateChange}
+                                                  toolbarStyle={{ backgroundColor: 'black', borderRadius: '4px', padding: '5px', width: 'fit-content' }}
+                                                  contentState={item[0].content}
+                                                  onContentStateChange={(contentState) => {
+                                                       this.setState({
+                                                            content: contentState,
+                                                       }, 
+                                                            this.props.editItem({
+                                                                 index: indexKeyArr,
+                                                                 content: this.state.content
+                                                            })
+                                                       );
+                                                  }}
                                                   toolbar={
                                                        {
                                                             options: ['inline', 'blockType', 'list', 'link'],
                                                             inline: { inDropdown: false, options: ['bold', 'italic', ],
                                                             bold: { icon: bold }, italic: { icon: italic }},
-                                                            blockType: { inDropdown: false, options: ['Code'] },
+                                                            blockType: { inDropdown: false, options: ['Code','Normal', 'H1', 'H2', 'H3'] },
                                                             list: { inDropdown: false, options: [] },
                                                             link: { inDropdown: false, options: ['link'], link: { icon: link } }
                                                        }
                                                   }
-                                             />
-                                             <textarea
-                                                  disabled
-                                                  value={JSON.stringify(contentState, null, 4)}
-                                             />
+                                             /></span> : '' }
 
-                                             {/* For body */}
-                                             <WYSIWYGEditor
-                                                  toolbarOnFocus
-                                                  // editorStyle={{ border: '1px solid #b5f5ec', borderRadius: '5px' }}
-                                                  toolbarStyle={{ backgroundColor: 'black', borderRadius: '4px', padding: '17px' }}
-                                                  onEditorStateChange={this.onEditorStateChange}
-                                                  toolbar={
-                                                       {
-                                                            options: ['blockType', 'link'],
-                                                            blockType: { inDropdown: false, options: ['Normal', 'H1', 'H2', 'H3'] },
-                                                            link: { inDropdown: false, options: ['link'], link: { icon: link } }
-                                                       }
-                                                  }
-                                             />
+                                             <Divider/>
+
                                              </div>         
                                         :
-                                        null 
+                                        <p>Select a file to display..</p>
                                    }
                               </div> 
                          </Content>
@@ -112,4 +105,12 @@ export class Editor extends Component {
      }
 }
 
-export default Editor
+const mapDispatchToProps = dispatch => {
+     return {
+          editItem: (formData) => {
+               dispatch(editItem(formData))
+          }
+     }
+}
+
+export default connect(null, mapDispatchToProps)(Editor)

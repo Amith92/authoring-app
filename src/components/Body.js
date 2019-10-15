@@ -11,13 +11,12 @@ export class Body extends Component {
           item: undefined
      }
      handleIndex = index => {
-          // console.log(index)
+          
           this.setState({ index }, () => {
                let indexKeyArr = [];
-               // let indexValueArr = [];
+          
                if(index) {
                     indexKeyArr = Object.keys(index)
-                    // indexValueArr = Object.values(index)
                }
                const { collections } = this.props.collections;
                let filteredCollection = collections.filter(collection => {
@@ -29,7 +28,6 @@ export class Body extends Component {
                let filteredItem = filteredContainer[0].items.filter(item => {
                     return item.index === indexKeyArr[2]
                })
-               // console.log(filteredItem)
                this.setState({ item: filteredItem })
           })
      }
@@ -49,7 +47,6 @@ export class Body extends Component {
 }
 
 const mapStateToProps = state => {
-     // console.log(state.collections)
      return {
           collections: state.collections
      }

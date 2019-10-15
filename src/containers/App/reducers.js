@@ -28,7 +28,6 @@ const authoringReducer = (state = initialState, action) => {
                }
                filteredCollection[0].containers.push(container);
                console.log(filteredCollection)
-               // Object.assign(collections, filteredCollection);
                localStorage.setItem('collections', JSON.stringify(collections));
                return {collections: [...collections]} 
           }
@@ -41,9 +40,6 @@ const authoringReducer = (state = initialState, action) => {
                     return container.index !== action.payload.containerIndex
                });
                fileteredCollection[0].containers = filteredContainer
-               // console.log(fileteredCollection)
-               // Object.assign(collections, fileteredCollection);
-               // console.log(collections)
                localStorage.setItem('collections', JSON.stringify(collections));
                return { collections: [...collections] }
           }
@@ -61,9 +57,23 @@ const authoringReducer = (state = initialState, action) => {
                     index, name: action.payload.itemName, content: action.payload.content
                }
                filteredContainer[0].items.push(item);
-               // Object.assign(collections, filteredCollection);
                localStorage.setItem('collections', JSON.stringify(collections));
                return {collections: [...collections]} 
+          }
+          case 'EDIT_ITEM': {
+               let collections = JSON.parse(localStorage.getItem('collections')) || [];
+               let fileteredCollection = collections.filter(collection => {
+                    return collection.index === action.payload.index[0]
+               });
+               let filteredContainer = fileteredCollection[0].containers.filter(container => {
+                    return container.index === action.payload.index[1]
+               });
+               let filteredItem = filteredContainer[0].items.filter(item => {
+                    return item.index === action.payload.index[2]
+               });
+               filteredItem[0].content = action.payload.content;
+               localStorage.setItem('collections', JSON.stringify(collections))
+               return {collections: [...collections]}
           }
           default: {
                return state

@@ -19,6 +19,13 @@ export const addItem = (formData) => {
      }
 }
 
+export const editItem = (formData) => {
+     return {
+          type: 'EDIT_ITEM',
+          payload: formData
+     }
+}
+
 export const removeContainer = (index) => {
      return {
           type: 'REMOVE_CONTAINER',
