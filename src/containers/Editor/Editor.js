@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Layout, Breadcrumb, Divider } from 'antd';
 import { Editor as WYSIWYGEditor} from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import bold from './icons/bold.png'
-import italic from './icons/italic.png'
-import link from './icons/link.png'
+import bold from '../../assets/icons/bold.png'
+import italic from '../../assets/icons/italic.png'
+import link from '../../assets/icons/link.png'
 import { connect } from 'react-redux'
-import { editItem } from '../containers/App/actions'
+import {editItem} from '../App/actions'
 
 export class Editor extends Component {
      constructor(props) {
@@ -31,26 +31,23 @@ export class Editor extends Component {
                indexValueArr = Object.values(index)
           }
           
-          const { Header, Content } = Layout;
+          const { Content } = Layout;
           return (
                <div>
                     <Layout style={{backgroundColor: 'white', marginLeft: '35px' }}>
-                         <Header style={{ backgroundColor: 'white' }}>  
-                         </Header>
+                         {/* <Header style={{ backgroundColor: 'white' }}>  
+                         </Header> */}
                          <Content>
+                         {indexKeyArr.length > 0 ?
                               <div style={{ marginLeft: '26px' }}>
-                              <Breadcrumb style={{ fontSize: '12px' }}>
-                                   <Breadcrumb.Item>{indexValueArr.length > 0 ? <span>{indexValueArr[0]}</span>: '' }</Breadcrumb.Item>
-                                   <Breadcrumb.Item>
-                                   {indexValueArr.length > 0 ? <span>{indexValueArr[1]}</span>: '' }
-                                   </Breadcrumb.Item>
-                                   {/* <Breadcrumb.Item>
-                                   {indexValueArr.length > 0 ? <span>{indexValueArr[2]}</span>: '' }
-                                   </Breadcrumb.Item> */}
-                                   
-                              </Breadcrumb>
-
-                                   {indexKeyArr.length > 0 ?
+                              
+                                   <Breadcrumb style={{ fontSize: '12px', marginTop: '50px'}}>
+                                        <Breadcrumb.Item>{indexValueArr.length > 0 ? <span>{indexValueArr[0]}</span>: '' }</Breadcrumb.Item>
+                                        <Breadcrumb.Item>
+                                        {indexValueArr.length > 0 ? <span>{indexValueArr[1]}</span>: '' }
+                                        </Breadcrumb.Item>
+                                        
+                                   </Breadcrumb> 
                                         <div style={{ marginLeft: '35px', marginRight: '35px', marginBottom: '35px' }}>
                                              {/* For Title */}
                                              {item ? 
@@ -87,18 +84,10 @@ export class Editor extends Component {
 
                                              <Divider/>
 
-                                             </div>         
-                                        :
-                                        <p>Select a file to display..</p>
-                                   }
+                                        </div>         
                               </div> 
-                         </Content>
-                    
-                         {/* <Footer style={{ backgroundColor: 'white' }}>
-                              <a href='#!'>
-                                   <Icon type="plus-circle" style={{ fontSize: '21px' }}/>
-                              </a>
-                         </Footer> */}
+                              : null
+                              }</Content> 
                     </Layout>
                </div>
           )

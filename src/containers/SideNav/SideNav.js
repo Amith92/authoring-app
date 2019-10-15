@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Collapse, Icon, Row, Col, Input, Menu, Layout } from 'antd';
 import { connect } from 'react-redux'
-import { addCollection, addContainer, addItem, removeContainer } from '../containers/App/actions'
-import  content  from './../constants';
+import { addCollection, addContainer, addItem, removeContainer } from '../App/actions'
+import  content  from '../../constants';
 
 export class SideNav extends Component {
      state = {
@@ -36,7 +36,7 @@ export class SideNav extends Component {
           return (
                <div>
                     <Sider style={{ backgroundColor: '#fafafa', marginTop: '17px' }} width="350">
-                         <Menu  style={{  }} mode="horizontal" selectedKeys={[this.state.current]} onClick={ (e) => {
+                         <Menu mode="horizontal" selectedKeys={[this.state.current]} onClick={ (e) => {
                               this.setState({ current: e.key })
                          } }>
                               <Menu.Item key="All">
@@ -61,12 +61,18 @@ export class SideNav extends Component {
                          <div style={{ marginLeft: '17px', marginTop: '17px' }}>
                               
                          <Row type="flex" justify="end">
-                              <Col span={4}>
-                                   <a href="#!" onClick={(e) => { this.toggleAddCollectionForm() }}> <Icon type="plus" style={{ fontSize: '' }}/> </a>
+                              <Col span={2}>
+                                   <a href="#!" onClick={(e) => { this.toggleAddCollectionForm() }}> <Icon type="plus" style={{ fontSize: '', color: 'black' }}/> </a>   
+                                   
+                              </Col>
+                              <Col span={2}>
+                                   <a href="#!"> <Icon type="double-left" style={{ fontSize: '', color: 'black' }}/> </a>
+                              </Col>
+                              <Col span={2}>
+                                   <a href="#!"> <Icon type="arrows-alt" style={{ ontSize: '', color: 'black' }}/> </a>
                               </Col>
                          </Row>
                          <br></br>
-
                               { this.state.current === 'All' ? 
                                    collections ? 
                                         collections.map(collection => {
@@ -74,10 +80,10 @@ export class SideNav extends Component {
                                                   <Collapse style={{ backgroundColor: '#fafafa' }} bordered={false} defaultActiveKey={['']} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />} >
                                                        <Panel header={collection.name} key={collection.index} style={PanelStyle} extra={ (
                                                                  <span>
-                                                                      <a href="#!"><Icon type="plus" onClick={(e) => { 
+                                                                      <a href="#!"><Icon type="plus" style={{ color: 'black' }} onClick={(e) => { 
                                                                            e.stopPropagation()
                                                                            this.toggleAddContainerForm() }}/></a>
-                                                                      <Icon type="copy" style={{ marginLeft: '17px' }}/>
+                                                                      <Icon type="copy" style={{ marginLeft: '17px', color: 'black' }}/>
                                                                  </span>
                                                             )
                                                        }>
@@ -91,7 +97,7 @@ export class SideNav extends Component {
                                                                                           
                                                                                           e.stopPropagation()
                                                                                           this.toggleAddItemForm()
-                                                                                     }}><Icon type="plus" /></a>
+                                                                                     }}><Icon style={{ color: 'black' }} type="plus" /></a>
                                                                                      <a href="#!" onClick={ e => {
                                                                                           e.stopPropagation()
                                                                                           let index = {
@@ -100,7 +106,7 @@ export class SideNav extends Component {
                                                                                           }
                                                                                           this.props.removeContainer(index)
                                                                                      }}>
-                                                                                          <Icon type="switcher" style={{ marginLeft: '17px' }}/>
+                                                                                          <Icon type="switcher" style={{ marginLeft: '17px', color: 'black' }}/>
                                                                                      </a>
                                                                                      <Icon type="more" style={{ marginLeft: '17px' }}/>
                                                                                 </span>
@@ -114,7 +120,7 @@ export class SideNav extends Component {
                                                                                                     [item.index]: item.name 
                                                                                                }
                                                                                                this.props.handleIndex(index)
-                                                                                          }}><p key={item.index} style={{ marginLeft: '35px' }}>{item.name}</p></a>
+                                                                                          }}><p key={item.index} style={{ marginLeft: '35px', color: 'black' }}>{item.name}</p></a>
                                                                                      )
                                                                                 })}
                     

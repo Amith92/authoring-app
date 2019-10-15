@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Layout, Row, Col } from 'antd';
-import Editor from './Editor';
-import SideNav from './SideNav';
+import Editor from '../Editor/Editor';
+import SideNav from '../SideNav/SideNav';
 import { connect } from 'react-redux'
 
 export class Body extends Component {

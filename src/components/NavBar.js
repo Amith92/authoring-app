@@ -1,25 +1,14 @@
-import React, { Component } from 'react'
 import { Row, Col, Icon, Form, Input, Menu, Button, Dropdown, Switch, Badge } from 'antd';
 import "./NavBar.css";
+import React from 'react'
 
-export class NavBar extends Component {
-     state = {
-          theme: 'light',
-          current: '1'
-     }
-
-     changeTheme = value => {
-          this.setState({
-            theme: value ? 'dark' : 'light',
-          });
-     };
-     render() {
-          const { Search } = Input;
+export default function NavBar() {
+     const { Search } = Input;
           // User settings dropdown
           const menu = (
-               <Menu theme={this.state.theme}>
+               <Menu>
                     <Menu.Item>
-                         Dark mode <Switch size="small" checked={this.state.theme === 'dark'} onChange={this.changeTheme} />
+                         Dark mode <Switch size="small" />
                     </Menu.Item>
                     <Menu.Item>
                          <a target="" rel="noopener noreferrer" href="#!">
@@ -55,9 +44,8 @@ export class NavBar extends Component {
                     </Menu.Item>
                </Menu>
           );
-
           return (
-               <div style={{ marginTop: '17px', marginLeft: '' }}>
+               <div style={{ marginTop: '17px' }}>
                     <Row style={{ marginLeft: '50px' }}>
                          <Col xs={{ span: 3  }} lg={{ span: 2, offset: 0 }}>
                               <Icon type="menu"  style={{ fontSize: '26px' }}/>
@@ -90,7 +78,4 @@ export class NavBar extends Component {
                     </Row>
                </div>
           )
-     }
 }
-
-export default NavBar
