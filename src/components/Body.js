@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Layout } from 'antd';
+import { Layout, Row, Col } from 'antd';
 import Editor from './Editor';
 import SideNav from './SideNav';
 import { connect } from 'react-redux'
@@ -35,11 +35,16 @@ export class Body extends Component {
           return (
                <div>
                     <Layout style={{ backgroundColor: 'white' }}>
-                         {/* Side Nav component */}
-                         <SideNav handleIndex={this.handleIndex}/>
-                         
-                         {/* Editor component */}
-                         <Editor index={this.state.index} item={this.state.item}/>
+                         <Row>
+                              <Col xs={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }}>
+                                   {/* Side Nav component */}
+                                   <SideNav handleIndex={this.handleIndex}/>
+                              </Col>
+                              <Col xs={{ span: 24, offset: 0 }} lg={{ span: 16, offset: 0 }}>
+                                   {/* Editor component */}
+                                   <Editor index={this.state.index} item={this.state.item}/>
+                              </Col>
+                         </Row>
                     </Layout>
                </div>
           )
