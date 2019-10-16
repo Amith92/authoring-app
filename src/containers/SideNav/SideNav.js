@@ -11,19 +11,21 @@ export class SideNav extends Component {
           containerName: '',
           openAddCollectionForm: false,
           openAddContainerForm: false,
-          openAddItemForm: false
+          openAddItemForm: false,
+          containerIndexToBeOpened: '',
+          itemIndexToBeOpened: ''
      }
 
      toggleAddCollectionForm = e => {
           this.setState({ openAddCollectionForm: true })
      }
 
-     toggleAddContainerForm = e => {
-          this.setState({ openAddContainerForm: true })
+     toggleAddContainerForm = (index) => {
+          this.setState({ openAddContainerForm: true, containerIndexToBeOpened:  index})
      }
 
-     toggleAddItemForm = e => {
-          this.setState({ openAddItemForm: true })
+     toggleAddItemForm = index => {
+          this.setState({ openAddItemForm: true, itemIndexToBeOpened: index })
      }
 
      render() {
@@ -82,7 +84,7 @@ export class SideNav extends Component {
                                                                  <span>
                                                                       <a href="#!"><Icon type="plus" style={{ color: 'black' }} onClick={(e) => { 
                                                                            e.stopPropagation()
-                                                                           this.toggleAddContainerForm() }}/></a>
+                                                                           this.toggleAddContainerForm(collection.index) }}/></a>
                                                                       <Icon type="copy" style={{ marginLeft: '17px', color: 'black' }}/>
                                                                  </span>
                                                             )
@@ -94,9 +96,8 @@ export class SideNav extends Component {
                                                                            <Panel header={container.name} key={container.index} style={PanelStyle} extra={(
                                                                                 <span>
                                                                                      <a href='#!' onClick={e => {
-                                                                                          
                                                                                           e.stopPropagation()
-                                                                                          this.toggleAddItemForm()
+                                                                                          this.toggleAddItemForm(container.index)
                                                                                      }}><Icon style={{ color: 'black' }} type="plus" /></a>
                                                                                      <a href="#!" onClick={ e => {
                                                                                           e.stopPropagation()
@@ -123,9 +124,9 @@ export class SideNav extends Component {
                                                                                           }}><p key={item.index} style={{ marginLeft: '35px', color: 'black' }}>{item.name}</p></a>
                                                                                      )
                                                                                 })}
-                    
+
                                                                                 {/* For adding a item */}
-                                                                                {this.state.openAddItemForm ? 
+                                                                                {this.state.openAddItemForm && this.state.itemIndexToBeOpened === container.index? 
                                                                                      <form style={{ marginLeft: '17px', marginRight: '17px' }} onSubmit={e => {
                                                                                           e.preventDefault();
                                                                                           let formData = {
@@ -152,7 +153,7 @@ export class SideNav extends Component {
                                                             })}
                     
                                                             {/* For adding a container */}
-                                                            {this.state.openAddContainerForm ? 
+                                                            {this.state.openAddContainerForm && this.state.containerIndexToBeOpened === collection.index ? 
                                                                  <form style={{ marginLeft: '17px', marginRight: '17px' }} onSubmit={e => {
                                                                       e.preventDefault();
                                                                       let formData = {
