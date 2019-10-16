@@ -40,7 +40,7 @@ export class SideNav extends Component {
                     <Sider style={{ backgroundColor: '#fafafa', marginTop: '17px' }} width="350">
                          <Menu mode="horizontal" selectedKeys={[this.state.current]} onClick={ (e) => {
                               this.setState({ current: e.key })
-                         } }>
+                         } } >
                               <Menu.Item key="All">
                                    All
                               </Menu.Item>
