@@ -1,5 +1,16 @@
+function getDataFromLocalStorage() {
+     try {
+          let collections = JSON.parse(localStorage.getItem('collections')) || []
+          return collections
+     }
+     catch(err) {
+          localStorage.removeItem('collections')
+          return []
+     }
+}
+
 const initialState = {
-     collections: JSON.parse(localStorage.getItem('collections')) || []
+     collections: getDataFromLocalStorage()
 }
 
 const authoringReducer = (state = initialState, action) => {
@@ -7,7 +18,7 @@ const authoringReducer = (state = initialState, action) => {
           case 'ADD_COLLECTION': {
                const uuidv1 = require('uuid/v1');
                let index = uuidv1();
-               let collections = JSON.parse(localStorage.getItem('collections')) || [];
+               let collections = getDataFromLocalStorage()
                let collection = {
                     index, name: action.payload, containers: []
                }
@@ -16,7 +27,7 @@ const authoringReducer = (state = initialState, action) => {
                return  {collections: [...collections]} 
           }
           case 'ADD_CONTAINER': {
-               let collections = JSON.parse(localStorage.getItem('collections')) || [];
+               let collections = getDataFromLocalStorage()
                // collections
                let filteredCollection = collections.filter(collection => {
                     return collection.index === action.payload.index
@@ -32,7 +43,7 @@ const authoringReducer = (state = initialState, action) => {
                return {collections: [...collections]} 
           }
           case 'REMOVE_CONTAINER': {
-               let collections = JSON.parse(localStorage.getItem('collections')) || [];
+               let collections = getDataFromLocalStorage()
                let fileteredCollection = collections.filter(collection => {
                     return collection.index === action.payload.collectionIndex
                });
@@ -44,7 +55,7 @@ const authoringReducer = (state = initialState, action) => {
                return { collections: [...collections] }
           }
           case 'ADD_ITEM': {
-               let collections = JSON.parse(localStorage.getItem('collections')) || [];
+               let collections = getDataFromLocalStorage()
                let filteredCollection = collections.filter(collection => {
                     return collection.index === action.payload.collectionIndex
                }); 
@@ -61,7 +72,7 @@ const authoringReducer = (state = initialState, action) => {
                return {collections: [...collections]} 
           }
           case 'EDIT_ITEM': {
-               let collections = JSON.parse(localStorage.getItem('collections')) || [];
+               let collections = getDataFromLocalStorage()
                let fileteredCollection = collections.filter(collection => {
                     return collection.index === action.payload.index[0]
                });

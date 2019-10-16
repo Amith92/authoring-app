@@ -79,7 +79,7 @@ export class SideNav extends Component {
                                    collections ? 
                                         collections.map(collection => {
                                              return (
-                                                  <Collapse className={styles.collapse} bordered={false} defaultActiveKey={['']} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />} >
+                                                  <Collapse key={collection.index} className={styles.collapse} bordered={false} defaultActiveKey={['']} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />} >
                                                        <Panel header={collection.name} key={collection.index} style={PanelStyle} extra={ (
                                                                  <span>
                                                                       <a href="#!"><Icon type="plus" className={styles.icons} onClick={(e) => { 
@@ -92,7 +92,7 @@ export class SideNav extends Component {
                     
                                                             {collection.containers.map(container => {
                                                                  return (
-                                                                      <Collapse className={styles.collapse} defaultActiveKey="" bordered={false} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={ isActive ? 90 : 0 } />}>
+                                                                      <Collapse key={container.index} className={styles.collapse} defaultActiveKey="" bordered={false} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={ isActive ? 90 : 0 } />}>
                                                                            <Panel header={container.name} key={container.index} style={PanelStyle} extra={(
                                                                                 <span>
                                                                                      <a href='#!' onClick={e => {
@@ -114,7 +114,7 @@ export class SideNav extends Component {
                                                                            )}>
                                                                                 {container.items.map(item => {
                                                                                      return (
-                                                                                          <a href='#!' onClick={e => {
+                                                                                          <a key={item.index} href='#!' onClick={e => {
                                                                                                let index = {
                                                                                                     [collection.index] : collection.name,
                                                                                                     [container.index]: container.name,
