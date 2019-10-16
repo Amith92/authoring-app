@@ -45,12 +45,12 @@ export default function NavBar() {
                </Menu>
           );
           return (
-               <div style={{ marginTop: '17px' }}>
-                    <Row style={{ marginLeft: '50px' }}>
+               <div style={{ marginTop: '17px', marginLeft: '50px' }}>
+                    <Row>
                          <Col xs={{ span: 3  }} lg={{ span: 2, offset: 0 }}>
-                              <Icon type="menu"  style={{ fontSize: '26px' }}/>
+                              <a href="#!" style={{ color: 'black' }}><Icon type="menu"  style={{ fontSize: '26px' }}/></a>
                          </Col>
-                         <Col xs={{ span: 20  }} lg={{ span: 14, offset: 0 }} className="ap_search_form">
+                         <Col xs={{ span: 22  }} lg={{ span: 16, offset: 0 }} className="ap_search_form">
                               <Form>
                                    <Search
                                         placeholder="Search..."
@@ -59,7 +59,7 @@ export default function NavBar() {
                               </Form>
                          </Col>
                          <Col xs={{ span: 24, offset: 0 }} lg={{ span: 6, offset: 0 }} className="ap_col">
-                              <span>
+                              <span style={{ marginLeft: '10px' }}>
                                    <Button icon="user-add" >
                                         Invite Team Member
                                    </Button>

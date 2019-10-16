@@ -34,13 +34,12 @@ export class Editor extends Component {
           const { Content } = Layout;
           return (
                <div>
-                    <Layout style={{backgroundColor: 'white', marginLeft: '35px' }}>
+                    <Layout style={{backgroundColor: 'white', marginLeft: '50px' }}>
                          {/* <Header style={{ backgroundColor: 'white' }}>  
                          </Header> */}
                          <Content>
                          {indexKeyArr.length > 0 ?
                               <div style={{ marginLeft: '26px' }}>
-                              
                                    <Breadcrumb style={{ fontSize: '12px', marginTop: '50px'}}>
                                         <Breadcrumb.Item>{indexValueArr.length > 0 ? <span>{indexValueArr[0]}</span>: '' }</Breadcrumb.Item>
                                         <Breadcrumb.Item>
@@ -53,7 +52,6 @@ export class Editor extends Component {
                                              {item ? 
                                              <span>
                                              <h1 style={{ fontSize: '35px' }}>{item[0].name} </h1>
-
                                              <WYSIWYGEditor
                                                   toolbarOnFocus
                                                   wrapperClassName="demo-wrapper"
