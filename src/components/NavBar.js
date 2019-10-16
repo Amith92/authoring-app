@@ -1,6 +1,6 @@
 import { Row, Col, Icon, Form, Input, Menu, Button, Dropdown, Switch, Badge } from 'antd';
-import "./NavBar.css";
 import React from 'react'
+import styles from './Nav.module.css'
 
 export default function NavBar() {
      const { Search } = Input;
@@ -45,12 +45,12 @@ export default function NavBar() {
                </Menu>
           );
           return (
-               <div style={{ marginTop: '17px', marginLeft: '50px' }}>
+               <div className={styles.navBarDiv}>
                     <Row>
                          <Col xs={{ span: 3  }} lg={{ span: 2, offset: 0 }}>
-                              <a href="#!" style={{ color: 'black' }}><Icon type="menu"  style={{ fontSize: '26px' }}/></a>
+                              <a href="#!" className={styles.icon}><Icon type="menu" className={styles.icon} /></a>
                          </Col>
-                         <Col xs={{ span: 22  }} lg={{ span: 16, offset: 0 }} className="ap_search_form">
+                         <Col xs={{ span: 22  }} lg={{ span: 16, offset: 0 }} className={styles.ap_search_form}>
                               <Form>
                                    <Search
                                         placeholder="Search..."
@@ -58,18 +58,18 @@ export default function NavBar() {
                                    />   
                               </Form>
                          </Col>
-                         <Col xs={{ span: 24, offset: 0 }} lg={{ span: 6, offset: 0 }} className="ap_col">
-                              <span style={{ marginLeft: '10px' }}>
+                         <Col xs={{ span: 24, offset: 0 }} lg={{ span: 6, offset: 0 }} className={styles.ap_col}>
+                              <span className={styles.span}>
                                    <Button icon="user-add" >
                                         Invite Team Member
                                    </Button>
-                                   <a href="#!" style={{ marginLeft: '32px', color: 'teal' }}>
+                                   <a href="#!" className={styles.invite}>
                                         <Badge count={17}>
-                                             <Icon type="bell" style={{ fontSize: '23px' }}/>
+                                             <Icon type="bell" className={styles.inviteIcon}/>
                                         </Badge>
                                    </a>
                                    <Dropdown overlay={menu} trigger={['click']}>
-                                        <Button shape="circle" style={{ marginLeft: '35px', color: 'teal' }}>
+                                        <Button shape="circle" className={styles.profileButton}>
                                              RA   
                                         </Button>
                                    </Dropdown>
