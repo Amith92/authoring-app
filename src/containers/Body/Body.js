@@ -36,7 +36,7 @@ export class Body extends Component {
                <div>
                     <Layout style={{ backgroundColor: 'white' }}>
                          <Row>
-                              <Col xs={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }}>
+                              <Col xs={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }} style={{ maxWidth: '310px' }}>
                                    {/* Side Nav component */}
                                    <SideNav handleIndex={this.handleIndex}/>
                               </Col>
