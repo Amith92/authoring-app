@@ -3,6 +3,7 @@ import { Layout, Row, Col } from 'antd';
 import Editor from '../Editor/Editor';
 import SideNav from '../SideNav/SideNav';
 import { connect } from 'react-redux'
+import styles from './Body.module.css'
 
 export class Body extends Component {
      state = {
@@ -34,9 +35,9 @@ export class Body extends Component {
      render() {
           return (
                <div>
-                    <Layout style={{ backgroundColor: 'white' }}>
+                    <Layout className={styles.layout}>
                          <Row>
-                              <Col xs={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }} style={{ maxWidth: '310px' }}>
+                              <Col xs={{ span: 24, offset: 0 }} lg={{ span: 8, offset: 0 }} className={styles.sideNavCol}>
                                    {/* Side Nav component */}
                                    <SideNav handleIndex={this.handleIndex}/>
                               </Col>

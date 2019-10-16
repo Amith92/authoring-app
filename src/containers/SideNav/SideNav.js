@@ -3,6 +3,7 @@ import { Collapse, Icon, Row, Col, Input, Menu, Layout } from 'antd';
 import { connect } from 'react-redux'
 import { addCollection, addContainer, addItem, removeContainer } from '../App/actions'
 import  content  from '../../constants';
+import styles from './SideNav.module.css'
 
 export class SideNav extends Component {
      state = {
@@ -37,7 +38,7 @@ export class SideNav extends Component {
           const { Sider } = Layout;
           return (
                <div>
-                    <Sider style={{ backgroundColor: '#fafafa', marginTop: '17px' }} width="350">
+                    <Sider width="350" className={styles.sideNav}>
                          <Menu mode="horizontal" selectedKeys={[this.state.current]} onClick={ (e) => {
                               this.setState({ current: e.key })
                          } } >
@@ -60,18 +61,17 @@ export class SideNav extends Component {
                                    Others2
                               </Menu.Item>
                          </Menu>
-                         <div style={{ marginLeft: '17px', marginTop: '17px' }}>
-                              
+                         <div className={styles.headIcons}>
                          <Row type="flex" justify="end">
                               <Col span={2}>
-                                   <a href="#!" onClick={(e) => { this.toggleAddCollectionForm() }}> <Icon type="plus" style={{ fontSize: '', color: 'black' }}/> </a>   
+                                   <a href="#!" onClick={(e) => { this.toggleAddCollectionForm() }}> <Icon type="plus" className={styles.icons}/> </a>   
                                    
                               </Col>
                               <Col span={2}>
-                                   <a href="#!"> <Icon type="double-left" style={{ fontSize: '', color: 'black' }}/> </a>
+                                   <a href="#!"> <Icon type="double-left" className={styles.icons}/> </a>
                               </Col>
                               <Col span={2}>
-                                   <a href="#!"> <Icon type="arrows-alt" style={{ ontSize: '', color: 'black' }}/> </a>
+                                   <a href="#!"> <Icon type="arrows-alt" className={styles.icons}/> </a>
                               </Col>
                          </Row>
                          <br></br>
@@ -79,26 +79,26 @@ export class SideNav extends Component {
                                    collections ? 
                                         collections.map(collection => {
                                              return (
-                                                  <Collapse style={{ backgroundColor: '#fafafa' }} bordered={false} defaultActiveKey={['']} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />} >
+                                                  <Collapse key={collection.index} className={styles.collapse} bordered={false} defaultActiveKey={['']} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={isActive ? 90 : 0} />} >
                                                        <Panel header={collection.name} key={collection.index} style={PanelStyle} extra={ (
                                                                  <span>
-                                                                      <a href="#!"><Icon type="plus" style={{ color: 'black' }} onClick={(e) => { 
+                                                                      <a href="#!"><Icon type="plus" className={styles.icons} onClick={(e) => { 
                                                                            e.stopPropagation()
                                                                            this.toggleAddContainerForm(collection.index) }}/></a>
-                                                                      <Icon type="copy" style={{ marginLeft: '17px', color: 'black' }}/>
+                                                                      <Icon type="copy" className={styles.collectionIcon}/>
                                                                  </span>
                                                             )
                                                        }>
                     
                                                             {collection.containers.map(container => {
                                                                  return (
-                                                                      <Collapse style={{ backgroundColor: '#fafafa' }} defaultActiveKey="" bordered={false} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={ isActive ? 90 : 0 } />}>
+                                                                      <Collapse key={container.index} className={styles.collapse} defaultActiveKey="" bordered={false} expandIcon={({ isActive }) => <Icon type="caret-right" rotate={ isActive ? 90 : 0 } />}>
                                                                            <Panel header={container.name} key={container.index} style={PanelStyle} extra={(
                                                                                 <span>
                                                                                      <a href='#!' onClick={e => {
                                                                                           e.stopPropagation()
                                                                                           this.toggleAddItemForm(container.index)
-                                                                                     }}><Icon style={{ color: 'black' }} type="plus" /></a>
+                                                                                     }}><Icon className={styles.icons} type="plus" /></a>
                                                                                      <a href="#!" onClick={ e => {
                                                                                           e.stopPropagation()
                                                                                           let index = {
@@ -107,27 +107,27 @@ export class SideNav extends Component {
                                                                                           }
                                                                                           this.props.removeContainer(index)
                                                                                      }}>
-                                                                                          <Icon type="switcher" style={{ marginLeft: '17px', color: 'black' }}/>
+                                                                                          <Icon type="switcher" className={styles.collectionIcon}/>
                                                                                      </a>
-                                                                                     <Icon type="more" style={{ marginLeft: '17px' }}/>
+                                                                                     <Icon type="more" className={styles.moreIcon}/>
                                                                                 </span>
                                                                            )}>
                                                                                 {container.items.map(item => {
                                                                                      return (
-                                                                                          <a href='#!' onClick={e => {
+                                                                                          <a key={item.index} href='#!' onClick={e => {
                                                                                                let index = {
                                                                                                     [collection.index] : collection.name,
                                                                                                     [container.index]: container.name,
                                                                                                     [item.index]: item.name 
                                                                                                }
                                                                                                this.props.handleIndex(index)
-                                                                                          }}><p key={item.index} style={{ marginLeft: '35px', color: 'black' }}>{item.name}</p></a>
+                                                                                          }}><p key={item.index} className={styles.items}>{item.name}</p></a>
                                                                                      )
                                                                                 })}
 
                                                                                 {/* For adding a item */}
                                                                                 {this.state.openAddItemForm && this.state.itemIndexToBeOpened === container.index? 
-                                                                                     <form style={{ marginLeft: '17px', marginRight: '17px' }} onSubmit={e => {
+                                                                                     <form className={styles.form} onSubmit={e => {
                                                                                           e.preventDefault();
                                                                                           let formData = {
                                                                                                itemName: this.state.itemName,
@@ -154,7 +154,7 @@ export class SideNav extends Component {
                     
                                                             {/* For adding a container */}
                                                             {this.state.openAddContainerForm && this.state.containerIndexToBeOpened === collection.index ? 
-                                                                 <form style={{ marginLeft: '17px', marginRight: '17px' }} onSubmit={e => {
+                                                                 <form className={styles.form} onSubmit={e => {
                                                                       e.preventDefault();
                                                                       let formData = {
                                                                            containerName: this.state.containerName,

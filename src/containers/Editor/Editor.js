@@ -7,6 +7,7 @@ import italic from '../../assets/icons/italic.png'
 import link from '../../assets/icons/link.png'
 import { connect } from 'react-redux'
 import {editItem} from '../App/actions'
+import styles from './Editor.module.css'
 
 export class Editor extends Component {
      constructor(props) {
@@ -34,24 +35,21 @@ export class Editor extends Component {
           const { Content } = Layout;
           return (
                <div>
-                    <Layout style={{backgroundColor: 'white', marginLeft: '50px' }}>
-                         {/* <Header style={{ backgroundColor: 'white' }}>  
-                         </Header> */}
+                    <Layout className={styles.layout}>
                          <Content>
                          {indexKeyArr.length > 0 ?
-                              <div style={{ marginLeft: '26px' }}>
-                                   <Breadcrumb style={{ fontSize: '12px', marginTop: '50px'}}>
+                              <div className={styles.contentDiv}>
+                                   <Breadcrumb className={styles.breadCrumb}>
                                         <Breadcrumb.Item>{indexValueArr.length > 0 ? <span>{indexValueArr[0]}</span>: '' }</Breadcrumb.Item>
                                         <Breadcrumb.Item>
                                         {indexValueArr.length > 0 ? <span>{indexValueArr[1]}</span>: '' }
-                                        </Breadcrumb.Item>
-                                        
+                                        </Breadcrumb.Item>       
                                    </Breadcrumb> 
-                                        <div style={{ marginLeft: '35px', marginRight: '35px', marginBottom: '35px' }}>
+                                        <div className={styles.editorDiv}>
                                              {/* For Title */}
                                              {item ? 
                                              <span>
-                                             <h1 style={{ fontSize: '35px' }}>{item[0].name} </h1>
+                                             <h1 className={styles.itemTitle}>{item[0].name} </h1>
                                              <WYSIWYGEditor
                                                   toolbarOnFocus
                                                   wrapperClassName="demo-wrapper"
