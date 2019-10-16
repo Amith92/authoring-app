@@ -1,4 +1,4 @@
-function getDataFromLocalStorage() {
+const getDataFromLocalStorage = () => {
      try {
           let collections = JSON.parse(localStorage.getItem('collections')) || []
           return collections
