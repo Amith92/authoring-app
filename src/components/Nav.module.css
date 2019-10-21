@@ -1,0 +1,43 @@
+@media only screen and (max-width: 992px) {
+     .ap_col:last-child{
+         margin-top: 20px;
+     }
+}
+
+@media only screen and (min-width: 769px) {
+     .ap_search_form {
+         width: 810;
+     }
+}
+
+.navBarDiv {
+     margin-top: 17px;
+     margin-left: 50px;
+}
+
+.navBarSpan {
+     margin-left: 10px;
+}
+
+.icon {
+     color: black;
+     font-size: 26px;
+}
+
+.span {
+     margin-left: 10px;
+}
+
+.invite {
+     margin-left: 32px;
+     color: teal;
+}
+
+.inviteIcon {
+     font-size: 23px;
+}
+
+.profileButton {
+     margin-left: 35px;
+     color: teal
+}
