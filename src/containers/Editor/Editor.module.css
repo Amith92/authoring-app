@@ -1,0 +1,23 @@
+.layout {
+     background-color: white;
+     margin-left: 50px;
+}
+
+.contentDiv {
+     margin-left: 26px
+}
+
+.breadCrumb{
+     font-size: 12px;
+     margin-top: 50px;
+}
+
+.editorDiv {
+     margin-left: 35px;
+     margin-right: 35px;
+     margin-bottom: 35px;
+}
+
+.itemTitle {
+     font-size: 35px;
+}

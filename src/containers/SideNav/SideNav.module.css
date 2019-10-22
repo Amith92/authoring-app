@@ -1,0 +1,37 @@
+.sideNav {
+     margin-top: 17px; 
+     min-height: 100vh;
+     background-color: #fafafa;
+}
+
+.headIcons {
+     margin-left: 17px;
+     margin-top: 17px;
+}
+
+.icons {
+     color: black;
+}
+
+.collapse {
+     background-color: #fafafa;
+}
+
+.items {
+     margin-left: 35px;
+     color: black;
+}
+
+.form {
+     margin-left: 17px;
+     margin-right: 17px;
+}
+
+.collectionIcon {
+     margin-left: 17px;
+     color: black;
+}
+
+.moreIcon {
+     margin-left: 17px;
+}
